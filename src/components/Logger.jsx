@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import "./css/App.css";
 import "./css/Logger.css";
 import LoggerItem from "./LoggerItem.jsx";
@@ -34,7 +35,7 @@ const Logger = () => {
     return <div className="App"></div>;
   }
 
-  // TODO: Able to modify reviews and title then send POST
+  // TODO: Build a new review item then call postRestReviews
   return (
     <div id="pricing-table" className="clear">
       <h1>Reviews</h1>
@@ -48,6 +49,8 @@ const Logger = () => {
           title={restaurant["title"]}
         />
       ))}
+
+      <Button>New Review</Button>
     </div>
   );
 };

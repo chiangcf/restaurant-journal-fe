@@ -14,25 +14,9 @@ body {
   border: 1px solid #ddd;
   color: #333;
   padding: 20px;
-  width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */
+  width: 220px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */
   float: left;
   position: relative;
-}
-
-#pricing-table #most-popular {
-  z-index: 2;
-  top: -13px;
-  border-width: 3px;
-  padding: 30px 20px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  -moz-box-shadow: 20px 0 10px -10px rgba(0, 0, 0, 0.15),
-    -20px 0 10px -10px rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: 20px 0 10px -10px rgba(0, 0, 0, 0.15),
-    -20px 0 10px -10px rgba(0, 0, 0, 0.15);
-  box-shadow: 20px 0 10px -10px rgba(0, 0, 0, 0.15),
-    -20px 0 10px -10px rgba(0, 0, 0, 0.15);
 }
 
 #pricing-table .plan:nth-child(1) {
