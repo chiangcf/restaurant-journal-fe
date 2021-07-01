@@ -131,7 +131,7 @@ const Logger = ({ rating, restaurantName, review, title }) => {
 
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src="/img/logo192.png" />
+      <Card.Img variant="top" src="https://picsum.photos/200" />
       <Card.Body>
         <Card.Title>{restaurantName}</Card.Title>
         <Card.Text>{title}</Card.Text>

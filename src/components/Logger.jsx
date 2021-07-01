@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 import "./css/App.css";
 import "./css/Logger.css";
 import LoggerItem from "./LoggerItem.jsx";
@@ -38,6 +38,8 @@ const Logger = () => {
   return (
     <div className="container">
       <h1>Reviews</h1>
+      {/* <div className="break"></div>
+      <Image src="/potato.png" rounded /> */}
       <div className="break"></div>
       {restaurants.map((restaurant) => (
         // console.log(restaurant)
@@ -49,7 +51,9 @@ const Logger = () => {
         />
       ))}
       <div className="break"></div>
-      <Button variant="dark">New Review</Button>
+      <Button variant="dark" onClick={() => window.alert("yeet")}>
+        New Review
+      </Button>
     </div>
   );
 };

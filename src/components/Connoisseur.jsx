@@ -1,11 +1,13 @@
-import React, { useState } from "react"; // important importation
+import React, { useState } from "react";
 import "./css/App.css";
-// import Button from "@material-ui/core/Button";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Figure, Form, Row } from "react-bootstrap";
 
 // This is React Hooks
 const Connoisseur = (props) => {
   const [resultText, setResultText] = useState("");
+  const [imageUrl, setImageUrl] = useState(
+    "https://picsum.photos/200?grayscale?blur=2"
+  );
   const [cuisine, setCuisine] = useState("");
   const [location, setLocation] = useState("");
 
@@ -40,8 +42,10 @@ const Connoisseur = (props) => {
     })
       .then((response) => {
         const restaurant = response.data;
-        console.log(restaurant);
-        const recommendation = `You should try ${restaurant["name"]} which is located in ${restaurant["location"]["address1"]}`;
+        const name = restaurant["name"];
+        const address = restaurant["location"]["address1"];
+        const recommendation = `You should try ${name} which is located in ${address}`;
+        setImageUrl(restaurant["image_url"]);
         setResultText(recommendation); // Sets the text to the name of the restaurant
       })
       .catch((err) => console.log(err));
@@ -71,9 +75,15 @@ const Connoisseur = (props) => {
             </Button>
           </Col>
         </Row>
+
+        <Figure>
+          <Figure.Caption>{resultText}</Figure.Caption>
+          <Figure.Image width={171} height={180} alt="171x180" src={imageUrl} />
+        </Figure>
+        {/* <Image src={imageUrl} rounded />
         <p style={{ marginLeft: "1rem" }} id="resultsBlock">
           {resultText}
-        </p>
+        </p> */}
       </Form>
     </div>
   );
