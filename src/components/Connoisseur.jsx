@@ -1,7 +1,7 @@
 import React, { useState } from "react"; // important importation
 import "./css/App.css";
-import "./css/Logger.css";
-import { Input, Button } from "reactstrap";
+// import Button from "@material-ui/core/Button";
+import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 
 // This is React Hooks
 const Connoisseur = (props) => {
@@ -48,35 +48,33 @@ const Connoisseur = (props) => {
   };
 
   return (
-    <div id="pricing-table">
-      <form onSubmit={handleSubmit}>
-        <div className="side-by-side">
-          <Input
-            className="w-25"
-            type="search"
-            name="searchCuisine"
-            placeholder="Cuisine"
-            value={cuisine}
-            onChange={onChangeCuisine}
-          />
-
-          <Input
-            style={{ marginLeft: "1rem" }}
-            className="w-25"
-            type="search"
-            name="searchLocation"
-            placeholder="City, State"
-            value={location}
-            onChange={onChangeLocation}
-          />
-          <Button style={{ marginLeft: "1rem" }} color="primary">
-            Search
-          </Button>
-        </div>
-      </form>
-      <p style={{ marginLeft: "1rem" }} id="resultsBlock">
-        {resultText}
-      </p>
+    <div>
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col>
+            <Form.Control
+              value={cuisine}
+              onChange={onChangeCuisine}
+              placeholder="Cuisine"
+            />
+          </Col>
+          <Col>
+            <Form.Control
+              value={location}
+              onChange={onChangeLocation}
+              placeholder="Location"
+            />
+          </Col>
+          <Col>
+            <Button variant="dark" type="submit">
+              Search
+            </Button>
+          </Col>
+        </Row>
+        <p style={{ marginLeft: "1rem" }} id="resultsBlock">
+          {resultText}
+        </p>
+      </Form>
     </div>
   );
 };

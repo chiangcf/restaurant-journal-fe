@@ -5,14 +5,11 @@ import Logger from "./Logger.jsx";
 
 function App() {
   return (
-    <div
-      style={{
-        backgroundColor: "#D9E5C1",
-        height: "100vh", // this makes it full screen
-      }}
-    >
+    <div className="container">
       <Header />
+      <div className="break"> </div>
       <Connoisseur />
+      <div className="break"> </div>
       <Logger />
     </div>
   );

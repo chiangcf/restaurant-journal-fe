@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import postRestReviews from "./Helpers";
 import "./css/App.css";
 import "./css/Logger.css";
+import { Card } from "react-bootstrap";
 
 // Make this pretty like a grid maybe?
 // Possibly put an image inside span
@@ -129,23 +130,32 @@ const Logger = ({ rating, restaurantName, review, title }) => {
   };
 
   return (
-    <div className="plan">
-      <h3>{restaurantName}</h3>
-      <h4>
-        {ratingEditMode ? renderRatingEditView() : renderRatingDefaultView()}
-      </h4>
+    <Card style={{ width: "18rem" }}>
+      <Card.Img variant="top" src="/img/logo192.png" />
+      <Card.Body>
+        <Card.Title>{restaurantName}</Card.Title>
+        <Card.Text>{title}</Card.Text>
+        <Card.Text>{review}</Card.Text>
+        <Button variant="dark">Potato</Button>
+      </Card.Body>
+    </Card>
+    // <div className="plan">
+    //   <h3>{restaurantName}</h3>
+    //   <h4>
+    //     {ratingEditMode ? renderRatingEditView() : renderRatingDefaultView()}
+    //   </h4>
 
-      <ul>
-        <li>
-          {titleEditMode ? renderTitleEditView() : renderTitleDefaultView()}
-          {/* {returnTT()} */}
-        </li>
-        <li style={{ fontSize: 13 }}>
-          {reviewEditMode ? renderReviewEditView() : renderReviewDefaultView()}
-        </li>
-        {showSubmitButton()}
-      </ul>
-    </div>
+    //   <ul>
+    //     <li>
+    //       {titleEditMode ? renderTitleEditView() : renderTitleDefaultView()}
+    //       {/* {returnTT()} */}
+    //     </li>
+    //     <li style={{ fontSize: 13 }}>
+    //       {reviewEditMode ? renderReviewEditView() : renderReviewDefaultView()}
+    //     </li>
+    //     {showSubmitButton()}
+    //   </ul>
+    // </div>
   );
 };
 

@@ -35,11 +35,10 @@ const Logger = () => {
     return <div className="App"></div>;
   }
 
-  // TODO: Build a new review item then call postRestReviews
   return (
-    <div id="pricing-table" className="clear">
+    <div className="container">
       <h1>Reviews</h1>
-
+      <div className="break"></div>
       {restaurants.map((restaurant) => (
         // console.log(restaurant)
         <LoggerItem
@@ -49,8 +48,8 @@ const Logger = () => {
           title={restaurant["title"]}
         />
       ))}
-
-      <Button>New Review</Button>
+      <div className="break"></div>
+      <Button variant="dark">New Review</Button>
     </div>
   );
 };

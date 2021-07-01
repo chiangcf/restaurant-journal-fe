@@ -11,12 +11,11 @@ const Header = () => {
       <h1
         style={{
           fontSize: "6rem",
-          fontWeight: "600",
-          marginBottom: "2rem",
-          lineHeight: "1em",
+          // marginBottom: "2rem",
+          // lineHeight: "1em",
           color: "#868881",
           textTransform: "lowercase",
-          textAlign: "center",
+          // textAlign: "center",
         }}
       >
         Restaurant Journey
