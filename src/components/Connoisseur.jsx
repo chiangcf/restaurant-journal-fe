@@ -75,15 +75,10 @@ const Connoisseur = (props) => {
             </Button>
           </Col>
         </Row>
-
         <Figure>
           <Figure.Caption>{resultText}</Figure.Caption>
           <Figure.Image width={171} height={180} alt="171x180" src={imageUrl} />
         </Figure>
-        {/* <Image src={imageUrl} rounded />
-        <p style={{ marginLeft: "1rem" }} id="resultsBlock">
-          {resultText}
-        </p> */}
       </Form>
     </div>
   );

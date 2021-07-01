@@ -7,7 +7,7 @@ import { Card } from "react-bootstrap";
 
 // Make this pretty like a grid maybe?
 // Possibly put an image inside span
-const Logger = ({ rating, restaurantName, review, title }) => {
+const Logger = ({ rating, restaurantName, review, title, randImg }) => {
   const [titleText, setTitleText] = useState(title);
   const [reviewText, setReviewText] = useState(review);
   const [ratingText, setRatingText] = useState(rating);
@@ -114,29 +114,32 @@ const Logger = ({ rating, restaurantName, review, title }) => {
   const showSubmitButton = () => {
     if (submitButton) {
       return (
-        <li>
-          <Button
-            variant="secondary"
-            onClick={() =>
-              postRestReviews(ratingText, restaurantName, titleText, reviewText)
-            }
-            size="sm"
-          >
-            submit
-          </Button>
-        </li>
+        <Button
+          variant="dark"
+          onClick={() =>
+            postRestReviews(ratingText, restaurantName, titleText, reviewText)
+          }
+          size="sm"
+        >
+          submit
+        </Button>
       );
     }
   };
 
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src="https://picsum.photos/200" />
+      <Card.Img
+        className="thumbnail"
+        variant="top"
+        src={"https://picsum.photos/200"}
+      />
       <Card.Body>
-        <Card.Title>{restaurantName}</Card.Title>
+        <Card.Title className="caption">{restaurantName}</Card.Title>
         <Card.Text>{title}</Card.Text>
         <Card.Text>{review}</Card.Text>
-        <Button variant="dark">Potato</Button>
+        {/* <Button variant="dark">Potato</Button> */}
+        {showSubmitButton()}
       </Card.Body>
     </Card>
     // <div className="plan">
