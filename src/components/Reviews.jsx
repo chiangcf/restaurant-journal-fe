@@ -5,50 +5,19 @@ import "./css/Logger.css";
 import ReviewItem from "./ReviewItem.jsx";
 
 // This is React Hooks
-const Review = () => {
-  const [restaurants, setRestaurants] = useState();
-  const [isLoading, setLoading] = useState(true);
-  const axios = require("axios");
-
-  const getRestReviews = async () => {
-    const URL =
-      "https://i9iptge7pj.execute-api.us-east-1.amazonaws.com/api/get_reviews";
-    try {
-      await axios.get(URL).then((response) => {
-        setRestaurants(response.data);
-        setLoading(false);
-        console.log(restaurants);
-      });
-    } catch (err) {
-      console.error("Could not load data", err);
-      setLoading("error");
-    }
-  };
-
-  useEffect(() => {
-    getRestReviews();
-  }, []);
-
-  // LOADING HEAVEN
-  // TODO: Maybe put the whole App in loading stage
-  if (isLoading) {
-    return <div className="App"></div>;
-  }
-
+const Review = (restaurants) => {
+  // TODO: Fix restaurants["restaurants"] bug ??? why not just restaurants
   return (
     <div className={"container top_padding"}>
       <div className="break"></div>
-      {
-        // @ts-ignore
-        restaurants.map((restaurant) => (
-          <ReviewItem
-            rating={restaurant["rating"]}
-            restaurantName={restaurant["restaurant_name"]}
-            review={restaurant["review"]}
-            title={restaurant["title"]}
-          />
-        ))
-      }
+      {restaurants["restaurants"].map((restaurant) => (
+        <ReviewItem
+          rating={restaurant["rating"]}
+          restaurantName={restaurant["restaurant_name"]}
+          review={restaurant["review"]}
+          title={restaurant["title"]}
+        />
+      ))}
       <div className="break"></div>
       <Button variant="dark" onClick={() => window.alert("yeet")}>
         New Review

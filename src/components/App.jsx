@@ -12,14 +12,32 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "react-bootstrap";
+import axios from "axios";
 
 const App = () => {
   const [showConnoisseur, setShowConnoisseur] = useState(false);
   const [showReviews, setShowReviews] = useState(false);
   const [imgUrl, setImgUrl] = useState("");
   const [recommendation, setRecommendation] = useState("");
-  // const [titleEditMode, setTitleEditMode] = useState(false);
-  // const [ratingEditMode, setRatingEditMode] = useState(false);
+
+  // Review
+  const [restaurants, setRestaurants] = useState();
+  const [isLoading, setLoading] = useState(true);
+
+  const getRestReviews = async () => {
+    console.log("getRestReviews");
+    const URL =
+      "https://i9iptge7pj.execute-api.us-east-1.amazonaws.com/api/get_reviews";
+    try {
+      await axios.get(URL).then((response) => {
+        setRestaurants(response.data);
+        // setLoading(false);
+      });
+    } catch (err) {
+      console.error("Could not load data", err);
+      // setLoading(true);
+    }
+  };
 
   const toggleConnoisseur = () => {
     setShowConnoisseur(showConnoisseur ? false : true);
@@ -36,6 +54,11 @@ const App = () => {
     setImgUrl(url);
     setRecommendation(recommend);
   };
+
+  useEffect(() => {
+    getRestReviews();
+    console.log(restaurants);
+  }, []);
 
   const renderConnoisseur = () => {
     return (
@@ -76,7 +99,7 @@ const App = () => {
         <div className="break" />
         {showConnoisseur ? renderConnoisseur() : null}
         <div className="break" />
-        {showReviews ? <Reviews /> : null}
+        {showReviews ? <Reviews restaurants={restaurants} /> : null}
       </div>
     </div>
   );
