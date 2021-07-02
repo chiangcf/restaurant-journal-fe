@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  /* background-color: #bbbbbb; */
 }
 
 /* Inserting a collapsed row between two flex items will make 
@@ -21,4 +22,11 @@
   top: 50%;
   left: 50%;
   /* width: 100%; */
+}
+
+.header {
+  padding: 50px;
+}
+.top_padding {
+  padding-top: 50px;
 }

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Button, Image } from "react-bootstrap";
 import "./css/App.css";
 import "./css/Logger.css";
-import LoggerItem from "./LoggerItem.jsx";
+import ReviewItem from "./ReviewItem.jsx";
 
 // This is React Hooks
-const Logger = () => {
+const Review = () => {
   const [restaurants, setRestaurants] = useState();
   const [isLoading, setLoading] = useState(true);
   const axios = require("axios");
@@ -36,14 +36,14 @@ const Logger = () => {
   }
 
   return (
-    <div className="container">
+    <div className={"container top_padding"}>
       <h1>Reviews</h1>
       {/* <div className="break"></div>
       <Image src="/potato.png" rounded /> */}
       <div className="break"></div>
       {restaurants.map((restaurant) => (
         // console.log(restaurant)
-        <LoggerItem
+        <ReviewItem
           rating={restaurant["rating"]}
           restaurantName={restaurant["restaurant_name"]}
           review={restaurant["review"]}
@@ -58,4 +58,4 @@ const Logger = () => {
   );
 };
 
-export default Logger;
+export default Review;

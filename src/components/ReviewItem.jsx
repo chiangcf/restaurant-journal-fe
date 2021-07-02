@@ -7,7 +7,7 @@ import { Card } from "react-bootstrap";
 
 // Make this pretty like a grid maybe?
 // Possibly put an image inside span
-const Logger = ({ rating, restaurantName, review, title, randImg }) => {
+const Review = ({ rating, restaurantName, review, title, randImg }) => {
   const [titleText, setTitleText] = useState(title);
   const [reviewText, setReviewText] = useState(review);
   const [ratingText, setRatingText] = useState(rating);
@@ -15,9 +15,9 @@ const Logger = ({ rating, restaurantName, review, title, randImg }) => {
   const [titleEditMode, setTitleEditMode] = useState(false);
   const [ratingEditMode, setRatingEditMode] = useState(false);
   const [submitButton, setSubmitButton] = useState(false);
-  const reviewTextInput = useRef();
-  const titleTextInput = useRef();
-  const ratingTextInput = useRef();
+  const reviewTextInput = useRef(null);
+  const titleTextInput = useRef(null);
+  const ratingTextInput = useRef(null);
 
   // Changes the view between default or Edit
   const changeReviewEditMode = () => {
@@ -127,15 +127,14 @@ const Logger = ({ rating, restaurantName, review, title, randImg }) => {
     }
   };
 
+  // TODO: ADD the modify review
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img
-        className="thumbnail"
-        variant="top"
-        src={"https://picsum.photos/200"}
-      />
+      <Card.Img variant="top" src={"https://picsum.photos/200"} />
       <Card.Body>
-        <Card.Title className="caption">{restaurantName}</Card.Title>
+        <Card.Title>
+          {restaurantName} - {rating}/5
+        </Card.Title>
         <Card.Text>{title}</Card.Text>
         <Card.Text>{review}</Card.Text>
         {/* <Button variant="dark">Potato</Button> */}
@@ -162,4 +161,4 @@ const Logger = ({ rating, restaurantName, review, title, randImg }) => {
   );
 };
 
-export default Logger;
+export default Review;

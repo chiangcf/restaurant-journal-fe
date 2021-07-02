@@ -1,24 +1,15 @@
 import React from "react";
 
 const Header = () => {
-  const headerStyle = {
-    padding: "20px 0",
-    lineHeight: "1.5em",
-  };
-
   return (
-    <header style={headerStyle}>
+    <header className="header">
       <h1
         style={{
           fontSize: "6rem",
-          // marginBottom: "2rem",
-          // lineHeight: "1em",
           color: "#868881",
-          textTransform: "lowercase",
-          // textAlign: "center",
         }}
       >
-        Restaurant Journey
+        restaurant journey
       </h1>
     </header>
   );
