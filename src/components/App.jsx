@@ -26,6 +26,7 @@ const App = () => {
     setShowReviews(false);
   };
 
+  // TODO: Move getReviews here so it doesn't call it every re-render
   const toggleReviews = () => {
     setShowReviews(showReviews ? false : true);
     setShowConnoisseur(false);

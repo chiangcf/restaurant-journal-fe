@@ -37,19 +37,18 @@ const Review = () => {
 
   return (
     <div className={"container top_padding"}>
-      <h1>Reviews</h1>
-      {/* <div className="break"></div>
-      <Image src="/potato.png" rounded /> */}
       <div className="break"></div>
-      {restaurants.map((restaurant) => (
-        // console.log(restaurant)
-        <ReviewItem
-          rating={restaurant["rating"]}
-          restaurantName={restaurant["restaurant_name"]}
-          review={restaurant["review"]}
-          title={restaurant["title"]}
-        />
-      ))}
+      {
+        // @ts-ignore
+        restaurants.map((restaurant) => (
+          <ReviewItem
+            rating={restaurant["rating"]}
+            restaurantName={restaurant["restaurant_name"]}
+            review={restaurant["review"]}
+            title={restaurant["title"]}
+          />
+        ))
+      }
       <div className="break"></div>
       <Button variant="dark" onClick={() => window.alert("yeet")}>
         New Review

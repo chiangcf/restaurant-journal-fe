@@ -7,7 +7,7 @@ import { Card } from "react-bootstrap";
 
 // Make this pretty like a grid maybe?
 // Possibly put an image inside span
-const Review = ({ rating, restaurantName, review, title, randImg }) => {
+const Review = ({ rating, restaurantName, review, title }) => {
   const [titleText, setTitleText] = useState(title);
   const [reviewText, setReviewText] = useState(review);
   const [ratingText, setRatingText] = useState(rating);
