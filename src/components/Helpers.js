@@ -1,7 +1,8 @@
 // API Create / Update Review
-const axios = require("axios");
 
-const postRestReviews = async (rating, restaurantName, title, review) => {
+import axios from "axios";
+
+const postRestReviews = async (restaurantName, rating, title, review) => {
   axios
     .post(
       "https://i9iptge7pj.execute-api.us-east-1.amazonaws.com/api/create_review",

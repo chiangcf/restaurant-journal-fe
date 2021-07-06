@@ -1,164 +1,95 @@
-import React, { useRef, useState } from "react"; // important importation
+import React, { useState } from "react"; // important importation
 import Button from "react-bootstrap/Button";
 import postRestReviews from "./Helpers";
 import "./css/App.css";
 import "./css/Logger.css";
-import { Card } from "react-bootstrap";
+import { ButtonGroup, Card, Form } from "react-bootstrap";
 
 // Make this pretty like a grid maybe?
-// Possibly put an image inside span
-const Review = ({ rating, restaurantName, review, title }) => {
+const Review = ({ restaurantName, rating, title, review }) => {
+  const [editMode, setEditMode] = useState(false);
+  const [restaurantText, setRestaurantText] = useState(restaurantName);
+  const [ratingText, setRatingText] = useState(rating);
   const [titleText, setTitleText] = useState(title);
   const [reviewText, setReviewText] = useState(review);
-  const [ratingText, setRatingText] = useState(rating);
-  const [reviewEditMode, setReviewEditMode] = useState(false);
-  const [titleEditMode, setTitleEditMode] = useState(false);
-  const [ratingEditMode, setRatingEditMode] = useState(false);
-  const [submitButton, setSubmitButton] = useState(false);
-  const reviewTextInput = useRef(null);
-  const titleTextInput = useRef(null);
-  const ratingTextInput = useRef(null);
 
-  // Changes the view between default or Edit
-  const changeReviewEditMode = () => {
-    setReviewEditMode(reviewEditMode ? false : true);
-    setSubmitButton(true);
+  const toggleEditMode = () => {
+    setEditMode(editMode ? false : true);
   };
 
-  // Updates the value of the reviewTextInput
-  const updateReviewValue = () => {
-    setReviewEditMode(false);
-    reviewTextInput.current.focus();
-    setReviewText(reviewTextInput.current.value);
+  const cancelEdit = () => {
+    setRestaurantText(restaurantName);
+    setRatingText(rating);
+    setTitleText(title);
+    setReviewText(review);
+    toggleEditMode();
   };
 
-  // Renders the EditView for the Review
-  const renderReviewEditView = () => {
+  const submitReview = () => {
+    postRestReviews(restaurantText, ratingText, titleText, reviewText);
+    toggleEditMode();
+  };
+
+  const renderEditView = () => {
     return (
-      <div>
-        <textarea type="text" defaultValue={reviewText} ref={reviewTextInput} />
-        <button onClick={changeReviewEditMode}>X</button>
-        <button onClick={updateReviewValue}>OK</button>
-      </div>
+      <Card style={{ width: "15rem" }}>
+        <Card.Img variant="top" src={"https://picsum.photos/200"} />
+        <Card.Body>
+          <Form.Group>
+            <Form.Control
+              type="text"
+              value={restaurantText}
+              onChange={(e) => setRestaurantText(e.target.value)}
+            />
+            <Form.Control
+              type="text"
+              value={ratingText}
+              onChange={(e) => setRatingText(e.target.value)}
+            />
+            <Form.Control
+              type="text"
+              value={titleText}
+              onChange={(e) => setTitleText(e.target.value)}
+            />
+            <Form.Control
+              as="textarea"
+              rows={3}
+              value={reviewText}
+              onChange={(e) => setReviewText(e.target.value)}
+            />
+          </Form.Group>
+        </Card.Body>
+        <ButtonGroup>
+          <Button variant="secondary" size="sm" onClick={cancelEdit}>
+            cancel
+          </Button>
+          <Button variant="dark" size="sm" onClick={submitReview}>
+            submit
+          </Button>
+        </ButtonGroup>
+      </Card>
     );
   };
 
-  // Renders the DefaultView for the Review
-  const renderReviewDefaultView = () => {
-    return <div onDoubleClick={changeReviewEditMode}>{reviewText}</div>;
-  };
-
-  // Changes the view between default or Title
-  const changeTitleEditMode = () => {
-    setTitleEditMode(titleEditMode ? false : true);
-    setSubmitButton(true);
-  };
-
-  // Updates the value of the titleTextInput
-  const updateTitleValue = () => {
-    setTitleEditMode(false);
-    titleTextInput.current.focus();
-    setTitleText(titleTextInput.current.value);
-  };
-
-  // Renders the TitleView for the Review
-  const renderTitleEditView = () => {
+  const renderDefaultView = () => {
     return (
-      <div>
-        <input type="text" defaultValue={titleText} ref={titleTextInput} />
-        <button onClick={changeTitleEditMode}>X</button>
-        <button onClick={updateTitleValue}>OK</button>
-      </div>
-    );
-  };
-
-  // Renders the DefaultView for the Review
-  const renderTitleDefaultView = () => {
-    return (
-      <div>
-        <b onDoubleClick={changeTitleEditMode}>{titleText}</b>
-      </div>
-    );
-  };
-
-  // RATINGS
-  // Changes the view between default or Edit
-  const changeRatingEditMode = () => {
-    setRatingEditMode(ratingEditMode ? false : true);
-    setSubmitButton(true);
-  };
-
-  // Updates the value of the ratingTextInput
-  const updateRatingValue = () => {
-    setRatingEditMode(false);
-    ratingTextInput.current.focus();
-    setRatingText(ratingTextInput.current.value);
-  };
-
-  // Renders the EditView for the Rating
-  const renderRatingEditView = () => {
-    return (
-      <div>
-        <textarea type="text" defaultValue={ratingText} ref={ratingTextInput} />
-        <button onClick={changeRatingEditMode}>X</button>
-        <button onClick={updateRatingValue}>OK</button>
-      </div>
-    );
-  };
-
-  // Renders the DefaultView for the Rating
-  const renderRatingDefaultView = () => {
-    return <div onDoubleClick={changeRatingEditMode}>{ratingText}/5</div>;
-  };
-
-  const showSubmitButton = () => {
-    if (submitButton) {
-      return (
-        <Button
-          variant="dark"
-          onClick={() =>
-            postRestReviews(ratingText, restaurantName, titleText, reviewText)
-          }
-          size="sm"
-        >
-          submit
+      <Card style={{ width: "15rem" }}>
+        <Card.Img variant="top" src={"https://picsum.photos/200"} />
+        <Card.Body>
+          <Card.Title>
+            {restaurantText} - {ratingText}/5
+          </Card.Title>
+          <Card.Text>{titleText}</Card.Text>
+          <Card.Text>{reviewText}</Card.Text>
+        </Card.Body>
+        <Button variant="light" size="sm" onClick={toggleEditMode}>
+          edit
         </Button>
-      );
-    }
+      </Card>
+    );
   };
-
   // TODO: ADD the modify review
-  return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={"https://picsum.photos/200"} />
-      <Card.Body>
-        <Card.Title>
-          {restaurantName} - {rating}/5
-        </Card.Title>
-        <Card.Text>{title}</Card.Text>
-        <Card.Text>{review}</Card.Text>
-        {/* <Button variant="dark">Potato</Button> */}
-        {showSubmitButton()}
-      </Card.Body>
-    </Card>
-    // <div className="plan">
-    //   <h3>{restaurantName}</h3>
-    //   <h4>
-    //     {ratingEditMode ? renderRatingEditView() : renderRatingDefaultView()}
-    //   </h4>
-
-    //   <ul>
-    //     <li>
-    //       {titleEditMode ? renderTitleEditView() : renderTitleDefaultView()}
-    //       {/* {returnTT()} */}
-    //     </li>
-    //     <li style={{ fontSize: 13 }}>
-    //       {reviewEditMode ? renderReviewEditView() : renderReviewDefaultView()}
-    //     </li>
-    //     {showSubmitButton()}
-    //   </ul>
-    // </div>
-  );
+  return editMode ? renderEditView() : renderDefaultView();
 };
 
 export default Review;

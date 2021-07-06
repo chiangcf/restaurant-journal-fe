@@ -84,16 +84,16 @@ const App = () => {
         <Row>
           <Col>
             <Button variant="light" onClick={toggleConnoisseur}>
-              Connoisseur
+              connoisseur
             </Button>
           </Col>
           <Col>
             <Button variant="light" onClick={toggleReviews}>
-              Reviews
+              reviews
             </Button>
           </Col>
           <Col>
-            <Button variant="light">Planner</Button>
+            <Button variant="light">planner</Button>
           </Col>
         </Row>
         <div className="break" />

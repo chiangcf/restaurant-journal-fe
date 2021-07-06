@@ -5,17 +5,18 @@ import "./css/Logger.css";
 import ReviewItem from "./ReviewItem.jsx";
 
 // This is React Hooks
-const Review = (restaurants) => {
+const Review = (yeet) => {
+  console.log(yeet);
   // TODO: Fix restaurants["restaurants"] bug ??? why not just restaurants
   return (
     <div className={"container top_padding"}>
       <div className="break"></div>
-      {restaurants["restaurants"].map((restaurant) => (
+      {yeet["restaurants"].map((restaurant) => (
         <ReviewItem
-          rating={restaurant["rating"]}
           restaurantName={restaurant["restaurant_name"]}
-          review={restaurant["review"]}
+          rating={restaurant["rating"]}
           title={restaurant["title"]}
+          review={restaurant["review"]}
         />
       ))}
       <div className="break"></div>
