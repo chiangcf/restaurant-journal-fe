@@ -27,20 +27,16 @@ const Review = (data) => {
 
   // Checks if the form in empty, then make the POST request to the lambda
   const createReview = () => {
-    if (
-      restaurantText !== "" ||
-      ratingText !== "" ||
-      titleText !== "" ||
-      reviewText !== ""
-    ) {
-      if (parseInt(ratingText) > 5) {
-        window.alert("Rating cannot be greater than 5");
+    if (restaurantText && ratingText && titleText && reviewText) {
+      if (parseInt(ratingText) > 5 || parseInt(ratingText) < 1) {
+        window.alert("rating be between 1 and 5");
       } else {
         postRestReviews(restaurantText, ratingText, titleText, reviewText);
+        window.alert("review created");
         toggleNewReview();
       }
     } else {
-      window.alert("Something is missing! >:|");
+      window.alert("something is missing! >:|");
     }
   };
 
