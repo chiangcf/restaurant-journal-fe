@@ -7,16 +7,19 @@ import { ButtonGroup, Card, Form } from "react-bootstrap";
 
 // Make this pretty like a grid maybe?
 const Review = ({ restaurantName, rating, title, review }) => {
-  const [editMode, setEditMode] = useState(false);
   const [restaurantText, setRestaurantText] = useState(restaurantName);
   const [ratingText, setRatingText] = useState(rating);
   const [titleText, setTitleText] = useState(title);
   const [reviewText, setReviewText] = useState(review);
+  const [editMode, setEditMode] = useState(false);
 
+  // Toggles the different views
   const toggleEditMode = () => {
     setEditMode(editMode ? false : true);
   };
 
+  // Discard all changes and goes back to default
+  // TODO: BUG if you edit -> submit; then edit -> cancel; it will show the initial values, how to fix this?
   const cancelEdit = () => {
     setRestaurantText(restaurantName);
     setRatingText(rating);
@@ -25,11 +28,13 @@ const Review = ({ restaurantName, rating, title, review }) => {
     toggleEditMode();
   };
 
+  // Makes POST request to lambda and goes back to "default mode"
   const submitReview = () => {
     postRestReviews(restaurantText, ratingText, titleText, reviewText);
     toggleEditMode();
   };
 
+  // Edit View for existing reviews
   const renderEditView = () => {
     return (
       <Card style={{ width: "15rem" }}>
@@ -71,6 +76,7 @@ const Review = ({ restaurantName, rating, title, review }) => {
     );
   };
 
+  // Default Card view with the reviews
   const renderDefaultView = () => {
     return (
       <Card style={{ width: "15rem" }}>
@@ -88,7 +94,7 @@ const Review = ({ restaurantName, rating, title, review }) => {
       </Card>
     );
   };
-  // TODO: ADD the modify review
+
   return editMode ? renderEditView() : renderDefaultView();
 };
 

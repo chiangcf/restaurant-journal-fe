@@ -3,6 +3,10 @@
 import axios from "axios";
 
 const postRestReviews = async (restaurantName, rating, title, review) => {
+  console.log(restaurantName);
+  console.log(rating);
+  console.log(title);
+  console.log(review);
   axios
     .post(
       "https://i9iptge7pj.execute-api.us-east-1.amazonaws.com/api/create_review",
