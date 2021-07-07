@@ -79,7 +79,7 @@ const Review = ({ restaurantName, rating, title, review }) => {
   const renderDefaultView = () => {
     return (
       <Card style={{ width: "15rem" }}>
-        <Card.Img variant="top" src={"https://picsum.photos/200"} />
+        {/* <Card.Img variant="top" src={"https://picsum.photos/200"} /> */}
         <Card.Body>
           <Card.Title>
             {restaurantText} - {ratingText}/5
