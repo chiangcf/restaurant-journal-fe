@@ -2,7 +2,6 @@ import React, { useState } from "react"; // important importation
 import Button from "react-bootstrap/Button";
 import postRestReviews from "./Helpers";
 import "./css/App.css";
-import "./css/Logger.css";
 import { ButtonGroup, Card, Form } from "react-bootstrap";
 
 // Make this pretty like a grid maybe?

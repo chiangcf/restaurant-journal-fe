@@ -1,8 +1,14 @@
+html,
+body,
+body > div,
+.app {
+  height: 100%;
+}
+
 .container {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  /* background-color: #bbbbbb; */
 }
 
 /* Inserting a collapsed row between two flex items will make 
@@ -28,6 +34,10 @@
   padding: 50px;
 }
 
+.header h1 {
+  font-size: 6rem;
+  color: #c0c0c0;
+}
 .top_padding {
   padding-top: 50px;
 }

@@ -10,7 +10,6 @@ import {
 } from "react-bootstrap";
 import postRestReviews from "./Helpers";
 import "./css/App.css";
-import "./css/Logger.css";
 import ReviewItem from "./ReviewItem.jsx";
 
 // This is React Hooks
